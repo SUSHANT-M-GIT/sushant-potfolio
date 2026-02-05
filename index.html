@@ -89,6 +89,7 @@
             backdrop-filter: blur(14px);
             box-shadow: 0 25px 60px rgba(0, 0, 0, .4);
             transform-style: preserve-3d;
+            cursor: pointer;
         }
 
         .interactive-card h3 {
@@ -108,6 +109,7 @@
             border-radius: 30px;
             font-size: .8rem;
             font-weight: 600;
+            cursor: pointer;
         }
 
         /* RESUME + SOCIAL */
@@ -147,6 +149,17 @@
             background: var(--accent);
             color: #000;
             transform: translateY(-2px);
+        }
+
+        .resume-card {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--card);
+            backdrop-filter: blur(14px);
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            text-align: center;
+            display: inline-block;
         }
 
         /* ABOUT */
@@ -292,20 +305,11 @@
             <h1>SUSHANT</h1>
             <p>Frontend / Full Stack Developer • 3rd Year</p>
 
-            <div style="margin-top:1.5rem;">
-                <a href="Sushant_Resume.pdf" download class="resume-btn">📄 Download Resume</a>
-
-                <div class="social-links">
-                    <a href="https://github.com/SUSHANT-M-GIT" target="_blank">💻 GitHub</a>
-                    <a href="https://linkedin.com/in/your-linkedin" target="_blank">🔗 LinkedIn</a>
-                </div>
-            </div>
-
             <div class="interactive-card-wrapper">
                 <div class="interactive-card" id="tiltCard">
                     <h3>Available for Internship</h3>
                     <p>Actively seeking frontend or full stack internship opportunities.</p>
-                    <span class="card-tag">Open to Work</span>
+                    <span class="card-tag" id="openWorkBtn">Open to Work</span>
                 </div>
             </div>
         </div>
@@ -324,6 +328,15 @@
                     web applications.</p>
                 <p>I enjoy working with React, JavaScript, Node.js, and Three.js.</p>
                 <p><strong>Currently open for internship opportunities.</strong></p>
+
+                <!-- RESUME CARD MOVED HERE -->
+                <div class="resume-card">
+                    <a href="Sushant_Resume.pdf" download class="resume-btn">📄 Download Resume</a>
+                    <div class="social-links">
+                        <a href="https://github.com/SUSHANT-M-GIT" target="_blank">💻 GitHub</a>
+                        <a href="https://linkedin.com/in/your-linkedin" target="_blank">🔗 LinkedIn</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -416,6 +429,11 @@
             const x = e.clientX - (r.left + r.width / 2);
             const y = e.clientY - (r.top + r.height / 2);
             card.style.transform = `rotateX(${-y / 20}deg) rotateY(${x / 20}deg) scale(1.05)`;
+        });
+
+        // Scroll to Get in Touch section when "Open to Work" is clicked
+        document.getElementById("openWorkBtn").addEventListener("click", () => {
+            document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
         });
 
         /* FORM SUCCESS */
