@@ -10,21 +10,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
-/* ===== RESET ===== */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
-/* ===== ROOT ===== */
 :root{
 --bg:#0a0a0a;
 --card:rgba(255,255,255,0.07);
 --text:#fff;
 --muted:#aaa;
 --accent:#00ffcc;
---transition:all .3s ease;
 }
 
 body{
@@ -34,7 +27,6 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* ===== UNIVERSE CANVAS (FULL PAGE) ===== */
 #three-canvas{
 position:fixed;
 top:0;
@@ -44,7 +36,6 @@ height:100%;
 z-index:-1;
 }
 
-/* ===== SECTIONS ===== */
 section{
 padding:6rem 6%;
 position:relative;
@@ -58,7 +49,6 @@ margin-bottom:3rem;
 color:var(--accent);
 }
 
-/* ===== HERO ===== */
 #hero{
 min-height:100vh;
 display:flex;
@@ -72,14 +62,10 @@ font-size:clamp(3rem,8vw,5rem);
 background:linear-gradient(135deg,var(--accent),#0088ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-margin-bottom:.5rem;
 }
 
-.hero-content p{
-color:var(--muted);
-}
+.hero-content p{color:var(--muted);}
 
-/* ===== INTERACTIVE CARD ===== */
 .interactive-card-wrapper{
 display:flex;
 justify-content:center;
@@ -94,19 +80,11 @@ border-radius:20px;
 background:var(--card);
 backdrop-filter:blur(14px);
 box-shadow:0 25px 60px rgba(0,0,0,.4);
-transition:.1s;
 transform-style:preserve-3d;
 }
 
-.interactive-card h3{
-color:var(--accent);
-transform:translateZ(30px);
-}
-
-.interactive-card p{
-color:var(--muted);
-transform:translateZ(20px);
-}
+.interactive-card h3{color:var(--accent);}
+.interactive-card p{color:var(--muted);}
 
 .card-tag{
 margin-top:1rem;
@@ -117,10 +95,8 @@ color:#000;
 border-radius:30px;
 font-size:.8rem;
 font-weight:600;
-transform:translateZ(40px);
 }
 
-/* ===== ABOUT ===== */
 .about-container{
 max-width:1100px;
 margin:auto;
@@ -151,9 +127,7 @@ font-size:3rem;
 margin:0 auto 1rem;
 }
 
-.about-card h3{
-color:var(--accent);
-}
+.about-card h3{color:var(--accent);}
 
 .about-tag{
 display:inline-block;
@@ -171,7 +145,6 @@ line-height:1.8;
 margin-bottom:1rem;
 }
 
-/* ===== PROJECTS ===== */
 .projects-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -184,15 +157,8 @@ margin:auto;
 background:var(--card);
 padding:1.5rem;
 border-radius:20px;
-transition:.3s;
 }
 
-.project-card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 40px rgba(0,255,204,.3);
-}
-
-/* ===== CONTACT ===== */
 .contact-container{
 max-width:900px;
 margin:auto;
@@ -225,14 +191,12 @@ font-weight:600;
 cursor:pointer;
 }
 
-/* ===== FOOTER ===== */
 footer{
 padding:2rem;
 text-align:center;
 color:var(--muted);
 }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
 .about-container,
 .contact-container{
@@ -245,10 +209,8 @@ text-align:center;
 
 <body>
 
-<!-- UNIVERSE -->
 <canvas id="three-canvas"></canvas>
 
-<!-- HERO -->
 <section id="hero">
 <div class="hero-content">
 <h1>SUSHANT</h1>
@@ -264,7 +226,6 @@ text-align:center;
 </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <h2 class="section-title">About Me</h2>
 <div class="about-container">
@@ -282,7 +243,6 @@ text-align:center;
 </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
 <h2 class="section-title">Projects</h2>
 <div class="projects-grid">
@@ -297,15 +257,19 @@ text-align:center;
 </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
 <h2 class="section-title">Get In Touch</h2>
 <div class="contact-container">
-<form class="contact-form">
-<input type="text" placeholder="Your Name">
-<input type="email" placeholder="Your Email">
-<textarea placeholder="Your Message"></textarea>
-<button>Send Message</button>
+
+<form class="contact-form"
+action="https://formspree.io/f/mvzbpklo"
+method="POST">
+
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Your Message" required></textarea>
+
+<button type="submit">Send Message</button>
 </form>
 
 <div>
@@ -321,7 +285,6 @@ text-align:center;
 </footer>
 
 <script>
-/* ===== THREE JS UNIVERSE ===== */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
 const renderer=new THREE.WebGLRenderer({
@@ -371,7 +334,6 @@ camera.updateProjectionMatrix();
 renderer.setSize(innerWidth,innerHeight);
 });
 
-/* ===== CARD TILT ===== */
 const card=document.getElementById("tiltCard");
 document.addEventListener("mousemove",e=>{
 const r=card.getBoundingClientRect();
